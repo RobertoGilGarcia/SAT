@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import PromptForm
+from .utils import llamar_ia_nvidia
 
 def home(request):
     return render(request, 'home.html')
@@ -28,7 +29,7 @@ def cuenta(request):
         form = PromptForm(request.POST)
         if form.is_valid():
             prompt_usuario = form.cleaned_data['prompt']
-            respuesta = f"Respuesta de prueba para: {prompt_usuario}"
+            respuesta = llamar_ia_nvidia(prompt_usuario)
     else:
         form = PromptForm()
 

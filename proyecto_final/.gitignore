@@ -1,0 +1,6 @@
+venv-proyecto/
+.env
+mi_ia/.env
+__pycache__/
+*.pyc
+db.sqlite3

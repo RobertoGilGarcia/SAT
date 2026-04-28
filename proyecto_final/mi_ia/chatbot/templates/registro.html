@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro | Mi IA{% endblock %}
+
+{% block content %}
+<div class="form-card">
+    <h1 class="custom-title mb-4 text-center">Crear cuenta</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success">Registrarse</button>
+        </div>
+    </form>
+
+    <div class="mt-4 text-center">
+        <p class="mb-2"><a href="{% url 'login' %}">Ya tengo cuenta</a></p>
+        <p><a href="{% url 'home' %}">Volver a la portada</a></p>
+    </div>
+</div>
+{% endblock %}

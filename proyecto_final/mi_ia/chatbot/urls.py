@@ -8,4 +8,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html', next_page='cuenta'), name='login'),
     path('logout/', views.cerrar_sesion, name='logout'),
     path('cuenta/', views.cuenta, name='cuenta'),
+    path('cuenta/<str:nombre>/configuracion/',views.configuracion_cuenta,name='configuracion'
+    ),
 ]

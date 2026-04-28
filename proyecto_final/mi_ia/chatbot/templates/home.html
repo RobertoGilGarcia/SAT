@@ -1,21 +1,73 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Bienvenido | Mi IA{% endblock %}
+{% block title %}Principal - ChatIA{% endblock %}
 
 {% block content %}
-<div class="hero-box text-center">
-    <h1 class="custom-title display-5 mb-3">Bienvenido a mi IA</h1>
-    <p class="custom-subtitle lead mb-4">
-        Una aplicación web hecha con Django para interactuar con una inteligencia artificial.
-    </p>
 
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'cuenta' %}" class="btn btn-primary btn-lg">Ir a mi cuenta</a>
-    {% else %}
-        <div class="d-flex justify-content-center gap-3">
-            <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Iniciar sesión</a>
-            <a href="{% url 'registro' %}" class="btn btn-outline-dark btn-lg">Registrarse</a>
-        </div>
-    {% endif %}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+
+        <section class="hero-box text-center mb-4">
+            <h2 class="custom-title">Bienvenido a ChatIA</h2>
+
+            <p class="custom-subtitle">
+                Prueba el chat con inteligencia artificial escribiendo una pregunta.
+            </p>
+
+            {% if not user.is_authenticated %}
+                <p class="text-muted">
+                    Para guardar tus conversaciones y acceder a tu configuración personalizada,
+                    tendrás que registrarte o iniciar sesión.
+                </p>
+            {% endif %}
+        </section>
+
+
+        <section class="card shadow-sm">
+            <div class="card-header">
+                <h3 class="h5 mb-0">Prueba gratuita de ChatIA</h3>
+            </div>
+
+            <div class="card-body chat-box">
+
+                {% if prompt_usuario %}
+                    <div class="d-flex justify-content-end mb-3">
+                        <div class="mensaje-usuario">
+                            <strong>Tú</strong>
+                            <p class="mb-0 mt-1">{{ prompt_usuario }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if respuesta %}
+                    <div class="d-flex justify-content-start mb-3">
+                        <div class="mensaje-ia">
+                            <strong>ChatIA</strong>
+                            <p class="mb-0 mt-1">{{ respuesta|linebreaksbr }}</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="text-muted text-center mb-0">
+                        Escribe un mensaje para probar la IA.
+                    </p>
+                {% endif %}
+
+            </div>
+
+            <div class="card-footer bg-white">
+                <form method="post" class="chat-bar">
+                    {% csrf_token %}
+
+                    {{ form.prompt }}
+
+                    <button type="submit" class="btn btn-primary">
+                        Enviar
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </div>
 </div>
+
 {% endblock %}

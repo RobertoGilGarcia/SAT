@@ -7,7 +7,7 @@ def llamar_ia_nvidia(prompt_usuario):
     y devuelve la respuesta generada por el modelo.
     """
 
-    api_key = os.getenv("NVIDIA_API_KEY")
+    api_key = os.getenv("NVIDIA_API_KEY") #importante no hardcodear la api key
 
     if not api_key:
         return "Error: no se ha configurado la variable de entorno NVIDIA_API_KEY."

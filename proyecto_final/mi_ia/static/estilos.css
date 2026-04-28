@@ -1,0 +1,205 @@
+/* ============================
+   ESTILOS GENERALES
+   ============================ */
+
+body {
+    background-color: #f4f6f8;
+    color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0;
+}
+
+
+/* ============================
+   CABECERA
+   ============================ */
+
+#cabecera {
+    background-color: #1f2937;
+    color: white;
+}
+
+#cabecera a {
+    color: white;
+    text-decoration: none;
+}
+
+#cabecera a:hover {
+    color: #dbeafe;
+}
+
+
+/* ============================
+   MENÚ
+   ============================ */
+
+#menu {
+    background-color: #111827;
+    color: black;
+}
+
+#menu a {
+    margin-right: 6px;
+}
+
+
+/* ============================
+   CONTENIDO PRINCIPAL
+   ============================ */
+
+#contenido {
+    min-height: 70vh;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+
+/* ============================
+   PIE DE PÁGINA
+   ============================ */
+
+#pie {
+    background-color: #1f2937;
+    color: white;
+    font-size: 14px;
+}
+
+
+/* ============================
+   TARJETAS GENERALES
+   ============================ */
+
+.card {
+    border-radius: 16px;
+    border: none;
+}
+
+.card-header {
+    border-radius: 16px 16px 0 0 !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+
+/* ============================
+   BOTONES
+   ============================ */
+
+.btn {
+    border-radius: 10px;
+}
+
+
+/* ============================
+   FORMULARIOS
+   ============================ */
+
+input,
+textarea,
+select {
+    border-radius: 10px !important;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+/* ============================
+   CHAT
+   ============================ */
+
+.chat-box {
+    min-height: 350px;
+    background-color: #f8f9fa;
+}
+
+.mensaje-usuario {
+    max-width: 75%;
+    padding: 15px;
+    border-radius: 16px 16px 0 16px;
+    background-color: #0d6efd;
+    color: white;
+}
+
+.mensaje-ia {
+    max-width: 75%;
+    padding: 15px;
+    border-radius: 16px 16px 16px 0;
+    background-color: white;
+    color: #212529;
+    border: 1px solid #dee2e6;
+}
+
+
+/* ============================
+   PERFIL DE USUARIO
+   ============================ */
+
+.foto-perfil {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+/* ============================
+   PÁGINA PRINCIPAL
+   ============================ */
+
+.hero-box {
+    background-color: white;
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.custom-title {
+    font-weight: 700;
+    color: #212529;
+}
+
+.custom-subtitle {
+    color: #6c757d;
+}
+
+
+/* ============================
+   CAJAS DE RESPUESTA
+   ============================ */
+
+.response-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #0d6efd;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    .mensaje-usuario,
+    .mensaje-ia {
+        max-width: 100%;
+    }
+
+    .hero-box {
+        padding: 25px;
+    }
+
+    #pie {
+        font-size: 12px;
+    }
+}

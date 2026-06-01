@@ -18,8 +18,6 @@
     * victor / tejedorsacristan
     * daniel / hernangomez
     * david / bisbalferre
-* Cuenta Admin Site: 
-  * admin / admin
 
 ## Recursos implementados y métodos disponibles para cada recurso
 

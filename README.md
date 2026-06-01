@@ -7,6 +7,3 @@ Esta asignatura se basa en la creación del backend de páginas web utilizando e
 De forma básica se ve algo de frontend con CSS, HTML, HTMX y Bootstrap, pero esta asignatura no se centra en el frontend.
 
 Al inicio de la asignatura, se desarrolla una introducción utilizando sockets en Python y gestionando respuestas en crudo, para poder comprender como funcionan las interacciones HTTP en una página web.
-
-Después, se introduce al framework de Django, haciendo que nos podamos abstraer de declarar el socket, bindearlo...
-

@@ -42,12 +42,12 @@
   * Descripción: Página para poder registrarte y tener gestión de conversaciones en ChatIA
 
 
-* Recurso : `/login`
+* Recurso : `/login/`
   * Métodos permitidos: GET, POST
   * Descripción: Página para poder iniciar sesión en tu cuenta y modificar, consultar o crear conversaciones con la IA
 
 
-* Recurso : `/cuenta`
+* Recurso : `/cuenta/`
   * Métodos permitidos: GET
   * Descripción: Página para mostrar la interfaz de la cuenta una vez te has registrado y logueado
 

@@ -1,0 +1,43 @@
+<footer id="pie" class="mt-auto" {% if usar_oob %}hx-swap-oob="true"{% endif %}>
+    <div class="container py-3">
+        <div class="row text-center text-md-start align-items-center g-3">
+
+            <div class="col-md-3">
+                <div class="footer-metric">
+                    <span class="footer-label">Conversaciones totales</span>
+                    <strong>{{ conversaciones_totales }}</strong>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="footer-metric">
+                    <span class="footer-label">Mensajes totales</span>
+                    <strong>{{ mensajes_totales }}</strong>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="footer-metric">
+                    <span class="footer-label">Tus conversaciones</span>
+                    <strong>{{ conversaciones_usuario }}</strong>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="footer-metric">
+                    <span class="footer-label">Tus mensajes</span>
+                    <strong>{{ prompts_usuario }}</strong>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-user text-center mt-3">
+            {% if user.is_authenticated %}
+                Sesión iniciada como <strong>{{ user.username }}</strong>
+            {% else %}
+                Usuario no autenticado
+            {% endif %}
+        </div>
+    </div>
+</footer>

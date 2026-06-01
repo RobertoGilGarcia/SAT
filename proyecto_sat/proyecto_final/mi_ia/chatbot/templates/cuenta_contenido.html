@@ -1,0 +1,126 @@
+<div class="row zona-cuenta" id="zona-cuenta">
+    <!-- SIDEBAR CONVERSACIONES -->
+    <div class="col-lg-3 mb-4" id="sidebar-conversaciones">
+        <div class="list-group">
+
+            {% for conv in conversaciones %}
+                <div class="conversation-row d-flex justify-content-between align-items-center mb-1">
+                    <a href="?conv_id={{ conv.id }}"
+                       class="list-group-item list-group-item-action {% if conversacion_activa and conv.id == conversacion_activa.id %}active{% endif %}">
+                        {{ conv.titulo }}
+                    </a>
+
+                    <form method="post"
+                          action="{% url 'borrar_conversacion' conv.id %}"
+                          class="d-inline"
+                          onsubmit="return confirm('¿Seguro que quieres borrar esta conversación?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                            🗑
+                        </button>
+                    </form>
+                </div>
+            {% empty %}
+                <div class="text-muted small p-3 bg-white rounded">
+                    Todavía no tienes conversaciones.
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <form method="post" action="{% url 'crear_conversacion' %}" class="mt-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-sm w-100">
+                + Nueva conversación
+            </button>
+        </form>
+    </div>
+
+    <!-- CHAT -->
+    <div class="col-lg-9 mb-4 d-flex flex-column">
+        <section class="card shadow-sm flex-grow-1 d-flex flex-column">
+
+            <div class="card-header d-flex justify-content-between align-items-center">
+                {% if conversacion_activa %}
+                    <h3 class="h5 mb-0">{{ conversacion_activa.titulo }}</h3>
+
+                    <a href="{% url 'conversacion_json' conversacion_activa.id %}"
+                       class="btn btn-sm btn-outline-primary"
+                       target="_blank">
+                        JSON
+                    </a>
+                {% else %}
+                    <h3 class="h5 mb-0">Nueva conversación</h3>
+                {% endif %}
+            </div>
+
+            <div class="card-body chat-box flex-grow-1" id="chat-mensajes">
+                {% for mensaje in mensajes %}
+                    {% if mensaje.rol == 'user' %}
+                        <div class="d-flex justify-content-end mb-3">
+                            <div class="mensaje-usuario">
+                                <strong>Tú</strong>
+                                <p class="mb-0 mt-1">{{ mensaje.contenido }}</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="d-flex justify-content-start mb-3">
+                            <div class="mensaje-ia">
+                                <strong>ChatIA</strong>
+                                <div class="mb-0 mt-1 markdown-content">
+                                    {{ mensaje.respuesta_html|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <p class="text-muted text-center mb-0">
+                        Escribe tu primer mensaje para crear una conversación.
+                    </p>
+                {% endfor %}
+            </div>
+
+            <div class="card-footer bg-white">
+
+                <div id="spinner-chat" class="htmx-indicator mb-2">
+                    <div class="text-muted small">
+                        ChatIA está generando la respuesta...
+                    </div>
+                </div>
+
+                {% if conversacion_activa %}
+                    <form method="post"
+                          class="chat-bar"
+                          id="form-chat"
+                          hx-post="{% url 'actualizar_mensajes' conversacion_activa.id %}"
+                          hx-target="#zona-cuenta"
+                          hx-swap="outerHTML"
+                          hx-indicator="#spinner-chat">
+                        {% csrf_token %}
+                        {{ form.prompt }}
+                        <button type="submit" class="chat-send-button">Enviar</button>
+                    </form>
+                {% else %}
+                    <form method="post"
+                          class="chat-bar"
+                          id="form-chat"
+                          hx-post="{% url 'iniciar_conversacion' %}"
+                          hx-target="#zona-cuenta"
+                          hx-swap="outerHTML"
+                          hx-indicator="#spinner-chat">
+                        {% csrf_token %}
+                        {{ form.prompt }}
+                        <button type="submit" class="chat-send-button">Enviar</button>
+                    </form>
+                {% endif %}
+
+            </div>
+
+        </section>
+    </div>
+
+</div>
+
+{% if actualizar_footer %}
+    {% include "footer_metricas.html" with usar_oob=True %}
+{% endif %}

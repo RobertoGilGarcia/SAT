@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Mi cuenta - ChatIA{% endblock %}
+
+{% block content %}
+    {% include "cuenta_contenido.html" %}
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const chat = document.getElementById("chat-mensajes");
+        if (chat) {
+            chat.scrollTop = chat.scrollHeight;
+        }
+    });
+
+    document.body.addEventListener("htmx:afterSwap", function() {
+        const chat = document.getElementById("chat-mensajes");
+        if (chat) {
+            chat.scrollTop = chat.scrollHeight;
+        }
+    });
+    </script>
+{% endblock %}

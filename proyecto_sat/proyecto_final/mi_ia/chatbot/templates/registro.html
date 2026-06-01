@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Registro - ChatIA{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+
+        <div class="card shadow-sm">
+            <div class="card-header text-center">
+                <h2 class="h4 mb-0">Crear cuenta</h2>
+            </div>
+
+            <div class="card-body p-4">
+
+                <p class="text-muted text-center mb-4">
+                    Regístrate para guardar tus conversaciones y continuar tus chats.
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label for="{{ form.username.id_for_label }}" class="form-label">
+                            Nombre de usuario
+                        </label>
+                        <input type="text"
+                               name="{{ form.username.name }}"
+                               id="{{ form.username.id_for_label }}"
+                               class="form-control"
+                               value="{{ form.username.value|default:'' }}"
+                               required>
+                        {% if form.username.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.password1.id_for_label }}" class="form-label">
+                            Contraseña
+                        </label>
+                        <input type="password"
+                               name="{{ form.password1.name }}"
+                               id="{{ form.password1.id_for_label }}"
+                               class="form-control"
+                               required>
+                        {% if form.password1.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ form.password1.errors }}
+                            </div>
+                        {% else %}
+                            <div class="form-text">
+                                Debe tener al menos 8 caracteres y no ser demasiado común.
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="{{ form.password2.id_for_label }}" class="form-label">
+                            Repetir contraseña
+                        </label>
+                        <input type="password"
+                               name="{{ form.password2.name }}"
+                               id="{{ form.password2.id_for_label }}"
+                               class="form-control"
+                               required>
+                        {% if form.password2.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ form.password2.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Registrarse
+                    </button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <p class="mb-2">
+                        ¿Ya tienes cuenta?
+                    </p>
+                    <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-sm">
+                        Iniciar sesión
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

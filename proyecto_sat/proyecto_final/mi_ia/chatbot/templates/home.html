@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Principal - ChatIA{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+
+        <section class="hero-box text-center mb-4">
+            <h2 class="custom-title">Bienvenido a ChatIA</h2>
+
+            <p class="custom-subtitle">
+                Prueba el chat con inteligencia artificial escribiendo una pregunta.
+            </p>
+
+            {% if not user.is_authenticated %}
+                <p class="text-muted">
+                    Para guardar tus conversaciones y acceder a tu configuración personalizada,
+                    tendrás que registrarte o iniciar sesión.
+                </p>
+            {% endif %}
+        </section>
+
+        <section class="card shadow-sm">
+            <div class="card-header">
+                <h3 class="h5 mb-0">Prueba gratuita de ChatIA</h3>
+            </div>
+
+            <div class="card-body chat-box">
+
+                {% if prompt_usuario %}
+                    <div class="d-flex justify-content-end mb-3">
+                        <div class="mensaje-usuario">
+                            <strong>Tú</strong>
+                            <p class="mb-0 mt-1">{{ prompt_usuario }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if respuesta_html %}
+                    <div class="d-flex justify-content-start mb-3">
+                        <div class="mensaje-ia">
+                            <strong>ChatIA</strong>
+                            <div class="mb-0 mt-1 markdown-content">
+                                {{ respuesta_html|safe }}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="text-muted text-center mb-0">
+                        Escribe un mensaje para probar la IA.
+                    </p>
+                {% endif %}
+
+            </div>
+
+            <div class="card-footer bg-white">
+                <form method="post" class="chat-bar">
+                    {% csrf_token %}
+                    {{ form.prompt }}
+                    <button type="submit" class="btn btn-primary">
+                        Enviar
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+{% endblock %}

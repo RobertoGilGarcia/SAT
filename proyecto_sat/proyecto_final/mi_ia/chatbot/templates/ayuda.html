@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Ayuda - ChatIA{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <section class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h3 class="h5 mb-0">¿Qué es ChatIA?</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    ChatIA es una aplicación web que simula un asistente conversacional.
+                    Permite escribir mensajes, recibir respuestas generadas por una inteligencia artificial y guardar
+                    el historial de cada conversación.
+                </p>
+            </div>
+        </section>
+
+        <section class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h3 class="h5 mb-0">Cómo usar la aplicación</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    Para usar el chat necesitas crear una cuenta o iniciar sesión. Una vez dentro, podrás acceder
+                    a tu cuenta, crear conversaciones nuevas, escribir mensajes y consultar conversaciones anteriores.
+                </p>
+                <p>
+                    Cada conversación queda guardada en la base de datos junto con los mensajes del usuario y las
+                    respuestas generadas por la IA.
+                </p>
+            </div>
+        </section>
+
+        <section class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h3 class="h5 mb-0">Conversaciones</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    La aplicación permite gestionar varias conversaciones. Cada usuario ve únicamente sus propios chats.
+                    Desde la cuenta se pueden recuperar conversaciones antiguas, continuar escribiendo en ellas o borrarlas.
+                </p>
+            </div>
+        </section>
+
+        <section class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h3 class="h5 mb-0">Perfil y configuración</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    Cada usuario dispone de una zona de configuración donde puede modificar algunos datos de su perfil,
+                    como el alias, tu correo electrónico o preferencias en el tema visual.
+                </p>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% for mensaje in mensajes %}
+    {% if mensaje.rol == 'user' %}
+        <div class="d-flex justify-content-end mb-3">
+            <div class="mensaje-usuario">
+                <strong>Tú</strong>
+                <p class="mb-0 mt-1">{{ mensaje.contenido }}</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="d-flex justify-content-start mb-3">
+            <div class="mensaje-ia">
+                <strong>ChatIA</strong>
+                <p class="mb-0 mt-1">{{ mensaje.contenido|linebreaksbr }}</p>
+            </div>
+        </div>
+    {% endif %}
+{% empty %}
+    <p class="text-muted text-center mb-0">
+        Escribe un mensaje para comenzar una conversación.
+    </p>
+{% endfor %}
